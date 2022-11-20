@@ -70,3 +70,6 @@ yarn-debug.log*
 
 # Direnv files
 .direnv
+
+# Ignore master key for decrypting credentials and more.
+/config/master.key
