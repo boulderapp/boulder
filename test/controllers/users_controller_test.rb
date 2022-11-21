@@ -6,6 +6,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should get index" do
+    login_user "neikos@neikos.email", "secret"
     get users_url
     assert_response :success
   end
@@ -21,29 +22,24 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
       post users_url, params: { user: { password: password, password_confirmation: password, email: "test@example.com" } }
     end
 
-    assert_redirected_to user_url(User.last)
+    assert_redirected_to login_url
   end
 
   test "should show user" do
+    login_user "neikos@neikos.email", "secret"
     get user_url(@user)
     assert_response :success
   end
 
   test "should get edit" do
+    login_user "neikos@neikos.email", "secret"
     get edit_user_url(@user)
     assert_response :success
   end
 
   test "should update user" do
+    login_user "neikos@neikos.email", "secret"
     patch user_url(@user), params: { user: { email: @user.email } }
     assert_redirected_to user_url(@user)
-  end
-
-  test "should destroy user" do
-    assert_difference("User.count", -1) do
-      delete user_url(@user)
-    end
-
-    assert_redirected_to users_url
   end
 end

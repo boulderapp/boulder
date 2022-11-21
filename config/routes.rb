@@ -3,6 +3,7 @@ Rails.application.routes.draw do
 
   root "index#root"
   resources :users
+  resources :c, controller: 'campaigns', as: :campaigns
 
   get 'login' => 'user_sessions#new', as: :login
   post 'login' => 'user_sessions#create'
