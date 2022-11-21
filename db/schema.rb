@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_11_21_083244) do
+ActiveRecord::Schema[7.0].define(version: 2022_11_21_103813) do
   create_table "campaigns", force: :cascade do |t|
     t.text "name"
     t.integer "owner_id", null: false
@@ -36,5 +36,14 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_21_083244) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token"
   end
 
+  create_table "villages", force: :cascade do |t|
+    t.integer "campaign_id", null: false
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["campaign_id"], name: "index_villages_on_campaign_id"
+  end
+
   add_foreign_key "campaigns", "users", column: "owner_id"
+  add_foreign_key "villages", "campaigns"
 end

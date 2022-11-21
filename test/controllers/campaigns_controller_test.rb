@@ -2,7 +2,7 @@ require "test_helper"
 
 class CampaignsControllerTest < ActionDispatch::IntegrationTest
   setup do
-    @campaign = campaigns(:one)
+    @campaign = campaigns(:simple_campaign)
     login_user "neikos@neikos.email", "secret"
   end
 
