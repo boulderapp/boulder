@@ -11,15 +11,7 @@
   </head>
 
   <body>
-    <nav class="container mx-auto mt-28 px-5">
-      <% if current_user %>
-        <%= link_to "Edit Profile", edit_user_path(current_user.id) %>
-        <%= button_to "Logout", :logout, method: :post %>
-      <% else %>
-        <%= link_to "Register", new_user_path %>
-        <%= link_to "Login", :login %>
-      <% end %>
-    </nav>
+    <%= render 'layouts/navbar' %>
     <main class="container mx-auto mt-28 px-5 flex">
       <%= yield %>
     </main>
