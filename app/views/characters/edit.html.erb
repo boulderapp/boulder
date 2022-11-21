@@ -1,0 +1,8 @@
+<div class="mx-auto md:w-2/3 w-full">
+  <h1 class="font-bold text-4xl">Editing character</h1>
+
+  <%= render "form", character: @character %>
+
+  <%= link_to "Show this character", [@campaign, @character], class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+  <%= link_to "Back to characters", campaign_characters_path(@campaign), class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+</div>

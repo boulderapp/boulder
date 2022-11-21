@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   resources :users
   resources :c, controller: 'campaigns', as: :campaigns do
     resources :villages
+    resources :characters
   end
 
   get 'login' => 'user_sessions#new', as: :login

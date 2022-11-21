@@ -1,0 +1,17 @@
+<div id="<%= dom_id character %>">
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Name:</strong>
+    <%= character.name %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Bio:</strong>
+    <%= character.bio %>
+  </p>
+
+  <% if action_name != "show" %>
+    <%= link_to "Show this character", [character.campaign, character], class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+    <%= link_to 'Edit this character', edit_campaign_character_path(character.campaign, character), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
+    <hr class="mt-6">
+  <% end %>
+</div>
