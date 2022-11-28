@@ -16,31 +16,15 @@
           # The full app environment with dependencies
           name = "rails-env";
           ruby = pkgs.ruby_3_1;
-          gemdir = ./.; # Points to Gemfile.lock and gemset.nix
+          gemdir = ./backend; # Points to Gemfile.lock and gemset.nix
         };
 
-        updateDeps = pkgs.writeScriptBin "update-deps" (builtins.readFile
+        updateRubyDeps = pkgs.writeScriptBin "update-ruby-deps" (builtins.readFile
           (pkgs.substituteAll {
-            src = ./scripts/update.sh;
+            src = ./backend/scripts/update.sh;
             bundix = "${pkgs.bundix}/bin/bundix";
             bundler = "${rubyEnv.bundler}/bin/bundler";
           }));
-
-        tailwindcss = pkgs.nodePackages.tailwindcss.overrideAttrs (_: {
-          plugins = [
-            pkgs.nodePackages."@tailwindcss/aspect-ratio"
-            pkgs.nodePackages."@tailwindcss/forms"
-            pkgs.nodePackages."@tailwindcss/typography"
-          ];
-        });
-
-        runTailwind = pkgs.writeScriptBin "run-tailwind" ''
-          ${tailwindcss}/bin/tailwindcss \
-            -i app/assets/stylesheets/application.tailwind.css \
-            -o app/assets/builds/tailwind.css \
-            -c config/tailwind.config.js \
-            "''$@"
-        '';
       in
       {
         devShells = rec {
@@ -48,10 +32,9 @@
 
           run = pkgs.mkShell {
             buildInputs = [
-              tailwindcss
               rubyEnv
               rubyEnv.wrappedRuby
-              updateDeps
+              updateRubyDeps
               # runTailwind
               pkgs.bundix
               pkgs.yarn
