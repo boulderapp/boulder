@@ -7,17 +7,9 @@ class VillagesController < ApplicationController
     @villages = Village.all
   end
 
-  # GET /villages/1 or /villages/1.json
-  def show
-  end
-
   # GET /villages/new
   def new
     @village = Village.new
-  end
-
-  # GET /villages/1/edit
-  def edit
   end
 
   # POST /villages or /villages.json
@@ -25,27 +17,19 @@ class VillagesController < ApplicationController
     @village = Village.new(village_params)
     @village.campaign = @campaign
 
-    respond_to do |format|
-      if @village.save
-        format.html { redirect_to campaign_village_url(@campaign, @village), notice: "Village was successfully created." }
-        format.json { render :show, status: :created, location: @village }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @village.errors, status: :unprocessable_entity }
-      end
+    if @village.save
+      render :show, status: :created, location: [@campaign, @village]
+    else
+      render json: @village.errors, status: :unprocessable_entity
     end
   end
 
   # PATCH/PUT /villages/1 or /villages/1.json
   def update
-    respond_to do |format|
-      if @village.update(village_params)
-        format.html { redirect_to campaign_village_url(@campaign, @village), notice: "Village was successfully updated." }
-        format.json { render :show, status: :ok, location: @village }
-      else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @village.errors, status: :unprocessable_entity }
-      end
+    if @village.update(village_params)
+      render :show, status: :ok, location: [@campaign, @village]
+    else
+      render json: @village.errors, status: :unprocessable_entity
     end
   end
 
@@ -53,10 +37,7 @@ class VillagesController < ApplicationController
   def destroy
     @village.destroy
 
-    respond_to do |format|
-      format.html { redirect_to campaign_villages_url(@campaign), notice: "Village was successfully destroyed." }
-      format.json { head :no_content }
-    end
+    head :no_content 
   end
 
   private

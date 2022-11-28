@@ -1,18 +1,13 @@
 require "test_helper"
 
 class UserSessionsControllerTest < ActionDispatch::IntegrationTest
-  test "should get login" do
-    get login_url
-    assert_response :success
-  end
-
   test "should post login" do
-    post login_url
+    post login_url, params: { email: users(:neikos).email, password: "secret" }, as: :json
     assert_response :success
   end
 
   test "should post logout" do
-    post logout_url
+    post logout_url, as: :json
     assert_response :redirect
   end
 end

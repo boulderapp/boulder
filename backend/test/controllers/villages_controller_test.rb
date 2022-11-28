@@ -8,43 +8,33 @@ class VillagesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should get index" do
-    get campaign_villages_url(@campaign)
-    assert_response :success
-  end
-
-  test "should get new" do
-    get new_campaign_village_url(@campaign)
+    get campaign_villages_url(@campaign), as: :json
     assert_response :success
   end
 
   test "should create village" do
     assert_difference("Village.count") do
-      post campaign_villages_url(@campaign), params: { village: { campaign_id: @village.campaign_id, name: @village.name } }
+      post campaign_villages_url(@campaign), params: { village: { campaign_id: @village.campaign_id, name: @village.name } }, as: :json
     end
 
-    assert_redirected_to campaign_village_url(@campaign, Village.last)
+    assert_response :created
   end
 
   test "should show village" do
-    get campaign_village_url(@campaign, @village)
-    assert_response :success
-  end
-
-  test "should get edit" do
-    get edit_campaign_village_url(@campaign, @village)
+    get campaign_village_url(@campaign, @village), as: :json
     assert_response :success
   end
 
   test "should update village" do
-    patch campaign_village_url(@campaign, @village), params: { village: { name: @village.name } }
-    assert_redirected_to campaign_village_url(@campaign, @village)
+    patch campaign_village_url(@campaign, @village), params: { village: { name: @village.name } }, as: :json
+    assert_response :success
   end
 
   test "should destroy village" do
     assert_difference("Village.count", -1) do
-      delete campaign_village_url(@campaign, @village)
+      delete campaign_village_url(@campaign, @village), as: :json
     end
 
-    assert_redirected_to campaign_villages_url(@campaign)
+    assert_response :no_content
   end
 end
