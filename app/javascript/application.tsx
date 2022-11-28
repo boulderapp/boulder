@@ -2,6 +2,8 @@
 import "trix"
 import "@rails/actiontext"
 
+import React from "react"
+
 type Test = "pass" | "fail"
 
-const Foo = <bla></bla>
+const Foo = <div></div>

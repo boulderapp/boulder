@@ -1,3 +1,4 @@
 web: bin/rails server -p 3000
 js: yarn build --watch
+ts: tsc --noEmit --jsx react --watch --preserveWatchOutput
 css: tailwindcss --watch -i app/assets/stylesheets/application.tailwind.css -o app/assets/builds/tailwind.css -c config/tailwind.config.js

@@ -52,9 +52,10 @@
               rubyEnv
               rubyEnv.wrappedRuby
               updateDeps
-              runTailwind
+              # runTailwind
               pkgs.bundix
               pkgs.yarn
+              pkgs.nodePackages.typescript
             ];
 
             shellHook = ''
