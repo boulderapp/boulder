@@ -2,3 +2,8 @@
 #   record: name_of_fixture (ClassOfFixture)
 #   name: content
 #   body: <p>In a <i>million</i> stars!</p>
+
+thomas_bio:
+  record: thomas (Character)
+  name: bio
+  body: I am thomas the engine
