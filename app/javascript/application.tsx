@@ -1,9 +1,12 @@
-// Configure your import map in config/importmap.rb. Read more: https://github.com/rails/importmap-rails
-import "trix"
-import "@rails/actiontext"
+import React from "react";
+import { createRoot } from "react-dom/client";
+import TestButton from "./components/utils/button";
 
-import React from "react"
+const myApp = document.getElementById("root");
+function App() {
+  return <TestButton text="Dicky" />;
+}
 
-type Test = "pass" | "fail"
+const root = createRoot(myApp!);
 
-const Foo = <div></div>
+root.render(<App />);
