@@ -2,18 +2,17 @@ class UserSessionsController < ApplicationController
   skip_before_action :require_login, only: [:new, :create]
 
   def create
-    @user = login(params[:email], params[:password], params[:remember])
+    @user = login(params[:email], params[:password], true)
 
     if @user
-      redirect_back_or_to(:users, notice: 'Login successful')
+      render :show, status: :ok, location: @user 
     else
-      flash.now[:alert] = 'Login failed'
-      render action: 'new'
+      render json: { error: "email or password did not match" }, status: :unprocessable_entity 
     end
   end
 
   def destroy
     logout
-    redirect_to(:users, notice: 'Logged out!')
+    head :no_content 
   end
 end
