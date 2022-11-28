@@ -8,43 +8,33 @@ class CharactersControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should get index" do
-    get campaign_characters_url(@campaign)
-    assert_response :success
-  end
-
-  test "should get new" do
-    get new_campaign_character_url(@campaign)
+    get campaign_characters_url(@campaign), as: :json
     assert_response :success
   end
 
   test "should create character" do
     assert_difference("Character.count") do
-      post campaign_characters_url(@campaign), params: { character: { bio: @character.bio, name: @character.name } }
+      post campaign_characters_url(@campaign), params: { character: { bio: @character.bio, name: @character.name } }, as: :json
     end
 
-    assert_redirected_to campaign_character_url(@campaign, Character.last)
+    assert_response :created
   end
 
   test "should show character" do
-    get campaign_character_url(@campaign, @character)
-    assert_response :success
-  end
-
-  test "should get edit" do
-    get edit_campaign_character_url(@campaign, @character)
+    get campaign_character_url(@campaign, @character), as: :json
     assert_response :success
   end
 
   test "should update character" do
-    patch campaign_character_url(@campaign, @character), params: { character: { bio: @character.bio, campaign_id: @character.campaign_id, name: @character.name } }
-    assert_redirected_to campaign_character_url(@campaign, @character)
+    patch campaign_character_url(@campaign, @character), params: { character: { bio: @character.bio, campaign_id: @character.campaign_id, name: @character.name } }, as: :json
+    assert_response :success
   end
 
   test "should destroy character" do
     assert_difference("Character.count", -1) do
-      delete campaign_character_url(@campaign, @character)
+      delete campaign_character_url(@campaign, @character), as: :json
     end
 
-    assert_redirected_to campaign_characters_url(@campaign)
+    assert_response :no_content
   end
 end

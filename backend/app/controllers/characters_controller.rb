@@ -11,41 +11,24 @@ class CharactersController < ApplicationController
   def show
   end
 
-  # GET /characters/new
-  def new
-    @character = Character.new
-  end
-
-  # GET /characters/1/edit
-  def edit
-  end
-
   # POST /characters or /characters.json
   def create
     @character = Character.new(character_params)
     @character.campaign = @campaign
 
-    respond_to do |format|
-      if @character.save
-        format.html { redirect_to campaign_character_url(@campaign, @character), notice: "Character was successfully created." }
-        format.json { render :show, status: :created, location: @character }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @character.errors, status: :unprocessable_entity }
-      end
+    if @character.save
+      render :show, status: :created, location: [@campaign, @character]
+    else
+      render json: @character.errors, status: :unprocessable_entity 
     end
   end
 
   # PATCH/PUT /characters/1 or /characters/1.json
   def update
-    respond_to do |format|
-      if @character.update(character_params)
-        format.html { redirect_to campaign_character_url(@campaign, @character), notice: "Character was successfully updated." }
-        format.json { render :show, status: :ok, location: @character }
-      else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @character.errors, status: :unprocessable_entity }
-      end
+    if @character.update(character_params)
+      render :show, status: :ok, location: [@campaign, @character]
+    else
+      render json: @character.errors, status: :unprocessable_entity
     end
   end
 
@@ -53,10 +36,7 @@ class CharactersController < ApplicationController
   def destroy
     @character.destroy
 
-    respond_to do |format|
-      format.html { redirect_to campaign_characters_url(@campaign), notice: "Character was successfully destroyed." }
-      format.json { head :no_content }
-    end
+    head :no_content
   end
 
   private
