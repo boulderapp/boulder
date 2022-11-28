@@ -7,43 +7,33 @@ class CampaignsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should get index" do
-    get campaigns_url
-    assert_response :success
-  end
-
-  test "should get new" do
-    get new_campaign_url
-    assert_response :success
+    get campaigns_url, as: :json
+    assert_response :success, as: :json
   end
 
   test "should create campaign" do
     assert_difference("Campaign.count") do
-      post campaigns_url, params: { campaign: { name: @campaign.name, owner_id: @campaign.owner_id } }
+      post campaigns_url, params: { campaign: { name: @campaign.name, owner_id: @campaign.owner_id } }, as: :json
     end
 
-    assert_redirected_to campaign_url(Campaign.last)
+    assert_response :created
   end
 
   test "should show campaign" do
-    get campaign_url(@campaign)
-    assert_response :success
-  end
-
-  test "should get edit" do
-    get edit_campaign_url(@campaign)
+    get campaign_url(@campaign), as: :json
     assert_response :success
   end
 
   test "should update campaign" do
-    patch campaign_url(@campaign), params: { campaign: { name: @campaign.name, owner_id: @campaign.owner_id } }
-    assert_redirected_to campaign_url(@campaign)
+    patch campaign_url(@campaign), params: { campaign: { name: @campaign.name, owner_id: @campaign.owner_id } }, as: :json
+    assert_response :success
   end
 
   test "should destroy campaign" do
     assert_difference("Campaign.count", -1) do
-      delete campaign_url(@campaign)
+      delete campaign_url(@campaign), as: :json
     end
 
-    assert_redirected_to campaigns_url
+    assert_response :no_content
   end
 end
