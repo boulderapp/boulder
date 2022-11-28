@@ -1,4 +1,6 @@
-class ApplicationController < ActionController::Base
+class ApplicationController < ActionController::API
+  include ::ActionController::Cookies
+
   before_action :require_login
 
   private
