@@ -2,10 +2,10 @@
 <div class="mx-auto">
   <%= render @campaign %>
 
-  <h2 class="text-2xl font-bold leading-7"><%= link_to "Villages", campaign_villages_path(@campaign) %></h2>
+  <h2 class="text-2xl font-bold leading-7 border-b-4 border-b-orange-500"><%= link_to "Villages", campaign_villages_path(@campaign) %></h2>
   <%= render @campaign.villages %>
 
-  <h2 class="text-2xl font-bold leading-7"><%= link_to "Characters", campaign_characters_path(@campaign) %></h2>
+  <h2 class="text-2xl font-bold leading-7 border-b-4 border-b-orange-500"><%= link_to "Characters", campaign_characters_path(@campaign) %></h2>
   <%= render @campaign.characters %>
 
   <%= link_to 'Edit this campaign', edit_campaign_path(@campaign), class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
