@@ -54,6 +54,7 @@
               updateDeps
               runTailwind
               pkgs.bundix
+              pkgs.yarn
             ];
 
             shellHook = ''

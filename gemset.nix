@@ -157,10 +157,10 @@
     platforms = [];
     source = {
       remotes = ["https://rubygems.org"];
-      sha256 = "0gyyfssqjxxhs91kzciqy9m5mxv39zhjqmc4faxxdri8yqsifm2c";
+      sha256 = "1ln89f9ypzincd5hqgmzd5vvfgf7fgir56v1spsri40ma88vnipj";
       type = "gem";
     };
-    version = "1.14.0";
+    version = "1.15.0";
   };
   builder = {
     groups = ["default" "development"];
@@ -326,17 +326,6 @@
     };
     version = "1.12.2";
   };
-  importmap-rails = {
-    dependencies = ["actionpack" "railties"];
-    groups = ["default"];
-    platforms = [];
-    source = {
-      remotes = ["https://rubygems.org"];
-      sha256 = "1zaphwzzha8dqdj63ysj9bh6mmm21yfh7c697031q8hkfwjz0g55";
-      type = "gem";
-    };
-    version = "1.1.5";
-  };
   io-console = {
     groups = ["default" "development" "test"];
     platforms = [{
@@ -384,6 +373,17 @@
       type = "gem";
     };
     version = "2.11.5";
+  };
+  jsbundling-rails = {
+    dependencies = ["railties"];
+    groups = ["default"];
+    platforms = [];
+    source = {
+      remotes = ["https://rubygems.org"];
+      sha256 = "1ym487mck774mgh80fjb0yv0pm6p3bih2kz04l6ma5kkdl4yjr5a";
+      type = "gem";
+    };
+    version = "1.0.3";
   };
   jwt = {
     groups = ["default"];
