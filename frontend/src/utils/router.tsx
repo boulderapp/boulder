@@ -1,4 +1,5 @@
 import { createBrowserRouter } from "react-router-dom";
+import NavigationBar from "../components/NavigationBar";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -7,9 +8,9 @@ const router = createBrowserRouter([
   {
     path: "/login",
     element: (
-      <div className="text-red-700 text-5xl">
-        login plz ty 4 credit card details
-      </div>
+      <NavigationBar>
+        <div className="text-red-700 text-5xl">Boulder.</div>
+      </NavigationBar>
     ),
   },
 ]);
