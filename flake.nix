@@ -8,7 +8,7 @@
   };
 
   outputs = { self, nixpkgs, flake-utils, nix-filter }:
-    flake-utils.lib.eachDefaultSystem (system:
+    flake-utils.lib.eachSystem [ "x86_64-linux" ] (system:
       let
         pkgs = import nixpkgs { inherit system; };
 
@@ -27,6 +27,9 @@
           }));
       in
       {
+        checks = {
+          inherit rubyEnv;
+        };
         devShells = rec {
           default = run;
 
