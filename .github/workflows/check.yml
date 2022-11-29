@@ -47,8 +47,6 @@ jobs:
     if: ${{ success() }}
     needs:
       - checks
-      - dco-check
-      - fixup-check
     runs-on: ubuntu-latest
     steps:
       - name: CI succeeded
