@@ -42,4 +42,14 @@ jobs:
     steps:
       - uses: actions/checkout@master
       - uses: 13rac1/block-fixup-merge-action@v2.0.0
-
+  ci-success:
+    name: CI
+    if: $
+    needs:
+      - checks
+      - dco-check
+      - fixup-check
+    runs-on: ubuntu-latest
+    steps:
+      - name: CI succeeded
+        run: exit 0
