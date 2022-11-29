@@ -9,7 +9,7 @@ const router = createBrowserRouter([
     path: "/login",
     element: (
       <NavigationBar>
-        <div className="text-red-700 text-5xl">Boulder.</div>
+        <div className="text-red-700 text-5xl">boulder.</div>
       </NavigationBar>
     ),
   },
