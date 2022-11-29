@@ -44,7 +44,7 @@ jobs:
       - uses: 13rac1/block-fixup-merge-action@v2.0.0
   ci-success:
     name: CI
-    if: $
+    if: ${{ success() }}
     needs:
       - checks
       - dco-check
