@@ -31,4 +31,28 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     patch user_url(@user), params: { user: { email: @user.email } }, as: :json
     assert_response :success
   end
+
+  test "should not update user without confirmation" do
+    login_user "neikos@neikos.email", "secret"
+    patch user_url(@user), params: { user: { password: "a" } }, as: :json
+    assert_response :unprocessable_entity
+  end
+
+  test "should not update user without correct confirmation" do
+    login_user "neikos@neikos.email", "secret"
+    patch user_url(@user), params: { user: { password: "a", password_confirmation: "b" } }, as: :json
+    assert_response :unprocessable_entity
+  end
+
+  test "should not update user with a short password" do
+    login_user "neikos@neikos.email", "secret"
+    patch user_url(@user), params: { user: { password: "a", password_confirmation: "a" } }, as: :json
+    assert_response :unprocessable_entity
+  end
+
+  test "should not update user without an @" do
+    login_user "neikos@neikos.email", "secret"
+    patch user_url(@user), params: { user: { email: "asd" } }, as: :json
+    assert_response :unprocessable_entity
+  end
 end
