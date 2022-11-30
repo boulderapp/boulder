@@ -1,17 +1,15 @@
 import { createBrowserRouter } from "react-router-dom";
 import NavigationBar from "../components/NavigationBar";
+import Home from "../routes/home";
+import Login from "../routes/login";
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <div>hello monsoir dicky</div>,
+    element: <Home />,
   },
   {
     path: "/login",
-    element: (
-      <NavigationBar>
-        <div className="text-red-700 text-5xl">boulder.</div>
-      </NavigationBar>
-    ),
+    element: <Login />,
   },
 ]);
 
