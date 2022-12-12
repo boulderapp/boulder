@@ -6,7 +6,9 @@ const defaultLayout = ({ children }: { children: ReactNode }) => {
     <>
       <div className="bg-boulder-brown h-screen px-12 py-6 text-boulder-beige ">
         <NavigationBar />
-        {children}
+        <section className="grid justify-center content-center">
+          {children}
+        </section>
       </div>
     </>
   );
